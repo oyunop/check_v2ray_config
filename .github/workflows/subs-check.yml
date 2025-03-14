@@ -24,10 +24,19 @@ jobs:
             -v ${{ github.workspace }}/output:/app/output \
             ghcr.io/jackrun123/subs-check:latest
 
-      - name: Commit and push changes
+      - name: Checkout target repository
+        uses: actions/checkout@v4
+        with:
+          repository: jackrun123/v2ray_configs  # 替换为目标仓库
+          token: ${{ secrets.PAT_TOKEN }}  # 使用 Personal Access Token
+          path: target-repo
+
+      - name: Copy and commit changes
         run: |
+          cp -r output/* target-repo/
+          cd target-repo
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add output/
+          git add .
           git commit -m "更新订阅检查结果" || echo "没有变更需要提交"
           git push
