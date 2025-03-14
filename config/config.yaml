@@ -2,7 +2,7 @@
 print-progress: true
 
 # 并发线程数
-concurrent: 20
+concurrent: 50
 
 # 检查间隔(分钟)
 check-interval: -1
@@ -19,7 +19,7 @@ timeout: 2000
 min-speed: 1024
 
 # 下载测试时间(s)(与下载链接大小相关，默认最大测试10s)
-download-timeout: 10
+download-timeout: 5
 
 # 监听端口，用于直接返回节点信息，方便订阅转换
 # http://127.0.0.1:8199/all.yaml
@@ -85,5 +85,6 @@ sub-urls-retry: 3
 # 订阅地址 支持 clash/mihomo/v2ray/base64 格式的订阅链接
 # 如果用户想使用clash类型，那可以在支持的订阅链接结尾加上 &flag=clash.meta
 sub-urls:
+  - https://raw.githubusercontent.com/barry-far/V2ray-Configs/refs/heads/main/All_Configs_Sub.txt
   - https://raw.githubusercontent.com/SoliSpirit/v2ray-configs/main/all_configs.txt
   #- https://raw.githubusercontent.com/jackrun123/check_v2ray_config/refs/heads/main/tmp/v2ray.txt
