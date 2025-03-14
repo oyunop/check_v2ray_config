@@ -37,6 +37,6 @@ jobs:
           cd target-repo
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add .
+          git add *.txt
           git commit -m "更新订阅检查结果" || echo "没有变更需要提交"
           git push

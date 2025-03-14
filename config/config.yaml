@@ -13,7 +13,7 @@ timeout: 2000
 # 测速地址(注意 并发数*节点速度<最大网速 否则测速结果不准确)
 # 尽量不要使用Speedtest，Cloudflare提供的下载链接，因为很多节点屏蔽测速网站
 # 建议使用自己上传到Cloudflare R2的文件
-speed-test-url: https://gh-proxy.henryjiu.workers.dev/https://github.com/AaronFeng753/Waifu2x-Extension-GUI/releases/download/v2.21.12/Waifu2x-Extension-GUI-v2.21.12-Portable.7z
+# speed-test-url: https://gh-proxy.henryjiu.workers.dev/https://github.com/AaronFeng753/Waifu2x-Extension-GUI/releases/download/v2.21.12/Waifu2x-Extension-GUI-v2.21.12-Portable.7z
 
 # 最低测速结果舍弃(KB/s)
 min-speed: 1024
@@ -85,5 +85,5 @@ sub-urls-retry: 3
 # 订阅地址 支持 clash/mihomo/v2ray/base64 格式的订阅链接
 # 如果用户想使用clash类型，那可以在支持的订阅链接结尾加上 &flag=clash.meta
 sub-urls:
-  #- https://raw.githubusercontent.com/SoliSpirit/v2ray-configs/main/all_configs.txt
-  - https://raw.githubusercontent.com/jackrun123/check_v2ray_config/refs/heads/main/tmp/v2ray.txt
+  - https://raw.githubusercontent.com/SoliSpirit/v2ray-configs/main/all_configs.txt
+  #- https://raw.githubusercontent.com/jackrun123/check_v2ray_config/refs/heads/main/tmp/v2ray.txt
