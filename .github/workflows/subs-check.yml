@@ -22,7 +22,7 @@ jobs:
           docker run --rm \
             -v ${{ github.workspace }}/config:/app/config \
             -v ${{ github.workspace }}/output:/app/output \
-            ghcr.io/beck-8/subs-check:latest
+            ghcr.io/jackrun123/subs-check:latest
 
       - name: Commit and push changes
         run: |

@@ -5,7 +5,7 @@ print-progress: true
 concurrent: 20
 
 # 检查间隔(分钟)
-check-interval: 30
+check-interval: -1
 
 # 超时时间(毫秒)(节点的最大延迟)
 timeout: 2000
@@ -85,4 +85,5 @@ sub-urls-retry: 3
 # 订阅地址 支持 clash/mihomo/v2ray/base64 格式的订阅链接
 # 如果用户想使用clash类型，那可以在支持的订阅链接结尾加上 &flag=clash.meta
 sub-urls:
-  - https://raw.githubusercontent.com/SoliSpirit/v2ray-configs/main/all_configs.txt
+  #- https://raw.githubusercontent.com/SoliSpirit/v2ray-configs/main/all_configs.txt
+  - https://raw.githubusercontent.com/jackrun123/check_v2ray_config/refs/heads/main/tmp/v2ray.txt
