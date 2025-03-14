@@ -86,5 +86,5 @@ sub-urls-retry: 3
 # 如果用户想使用clash类型，那可以在支持的订阅链接结尾加上 &flag=clash.meta
 sub-urls:
   - https://raw.githubusercontent.com/barry-far/V2ray-Configs/refs/heads/main/All_Configs_Sub.txt
-  - https://raw.githubusercontent.com/SoliSpirit/v2ray-configs/main/all_configs.txt
+  #- https://raw.githubusercontent.com/SoliSpirit/v2ray-configs/main/all_configs.txt
   #- https://raw.githubusercontent.com/jackrun123/check_v2ray_config/refs/heads/main/tmp/v2ray.txt
