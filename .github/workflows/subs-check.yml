@@ -1,0 +1,33 @@
+name: Subscription Checker
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # 每6小时运行一次
+  workflow_dispatch:        # 允许手动触发
+
+jobs:
+  check-subscriptions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: List all files in current directory
+        run: |
+          echo "当前目录的所有文件:"
+          ls -al
+
+      - name: Run subscription checker
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}/config:/app/config \
+            -v ${{ github.workspace }}/output:/app/output \
+            ghcr.io/beck-8/subs-check:latest
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add output/
+          git commit -m "更新订阅检查结果" || echo "没有变更需要提交"
+          git push
