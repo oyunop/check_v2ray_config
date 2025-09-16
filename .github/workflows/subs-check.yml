@@ -27,7 +27,7 @@ jobs:
       - name: Checkout target repository
         uses: actions/checkout@v4
         with:
-          repository: jackrun123/v2ray_configs  # 替换为目标仓库
+          repository: oyunop/v2ray_configs  # 替换为目标仓库
           token: ${{ secrets.PAT_TOKEN }}  # 使用 Personal Access Token
           path: target-repo
 
