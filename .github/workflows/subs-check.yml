@@ -2,7 +2,7 @@ name: Subscription Checker
 
 on:
   schedule:
-    - cron: '30 19 * * *'  # 每6小时运行一次
+    - cron: '0 19 * * *'  # 每天3点
   workflow_dispatch:        # 允许手动触发
 
 jobs:
@@ -22,7 +22,7 @@ jobs:
           docker run --rm \
             -v ${{ github.workspace }}/config:/app/config \
             -v ${{ github.workspace }}/output:/app/output \
-            ghcr.io/jackrun123/subs-check:latest
+            ghcr.io/oyunop/subs-check:latest
 
       - name: Checkout target repository
         uses: actions/checkout@v4
