@@ -118,5 +118,5 @@ sub-urls:
   - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/protocols/vm.txt
   - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/protocols/tr.txt
   - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/protocols/ss.txt
-  - https://raw.githubusercontent.com/barry-far/V2ray-config/main/All_Configs_base64_Sub.txt
+  # - https://raw.githubusercontent.com/barry-far/V2ray-config/main/All_Configs_base64_Sub.txt
   - https://raw.githubusercontent.com/ggborr/FREEE-VPN/refs/heads/main/11v2ray
