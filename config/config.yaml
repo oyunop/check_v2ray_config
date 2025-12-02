@@ -2,13 +2,13 @@
 print-progress: true
 
 # 并发线程数
-concurrent: 100
+concurrent: 50
 
 # 检查间隔(分钟)
 check-interval: -1
 
 # 超时时间(毫秒)(节点的最大延迟)
-timeout: 4000
+timeout: 6000
 
 # 测速地址(注意 并发数*节点速度<最大网速 否则测速结果不准确)
 # 尽量不要使用Speedtest，Cloudflare提供的下载链接，因为很多节点屏蔽测速网站
@@ -114,47 +114,8 @@ sub-urls:
   - https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/clashmeta.txt
   - https://raw.githubusercontent.com/xiaoji235/airport-free/main/v2ray/v2rayshare.txt
   - https://raw.githubusercontent.com/xiaoji235/airport-free/main/v2ray.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-1.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-2.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-3.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-4.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-5.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-6.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-7.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-8.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-9.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-10.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-11.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-12.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-13.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-14.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-15.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-16.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-17.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-18.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-19.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-20.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-21.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-22.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-23.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-24.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-25.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-26.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-27.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-28.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-29.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-30.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-31.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-32.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-33.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-34.txt
-  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/mini/m1n1-5ub-35.txt
-  - https://raw.githubusercontent.com/ebrasha/free-v2ray-public-list/refs/heads/main/all_extracted_configs.txt
-  - https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub1.txt
-  - https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub2.txt
-  - https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub3.txt
-  - https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub4.txt
-  - https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub5.txt
-  - https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub6.txt
-  - https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub7.txt
-  - https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub8.txt
+  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/protocols/vl.txt
+  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/protocols/vm.txt
+  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/protocols/tr.txt
+  - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/protocols/ss.txt
+  - https://raw.githubusercontent.com/barry-far/V2ray-config/main/All_Configs_base64_Sub.txt
