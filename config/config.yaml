@@ -58,24 +58,24 @@ mihomo-api-secret: ""
 save-method: local
 
 # webdav
-webdav-url: "https://example.com/dav/"
-webdav-username: "admin"
-webdav-password: "admin"
+#webdav-url: "https://example.com/dav/"
+#webdav-username: "admin"
+#webdav-password: "admin"
 
 # gist id
-github-gist-id: ""
+#github-gist-id: ""
 
 # github token
-github-token: ""
+#github-token: ""
 
 # github api mirror
-github-api-mirror: ""
+#github-api-mirror: ""
 
 # 将测速结果推送到Worker的地址
-worker-url: https://example.worker.dev
+#worker-url: https://example.worker.dev
 
 # Worker令牌
-worker-token: 1234567890
+# worker-token: 1234567890
 
 # 重试次数(获取订阅失败后重试次数)
 sub-urls-retry: 3
