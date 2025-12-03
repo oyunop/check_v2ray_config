@@ -1,62 +1,61 @@
-name: Subscription Checker + Auto Kill Duplicates
+name: Subscription Checker
 
 on:
   schedule:
-    - cron: '0 19 * * *'   # 北京时间 3:00（UTC 19:00）
-  workflow_dispatch:
-
-# ────────────────────── 关键：自动取消正在运行的旧任务 ──────────────────────
-concurrency:
-  group: subscription-checker   # 同一组只能同时跑一个
-  cancel-in-progress: true      # 新任务启动时自动 kill 掉旧的正在运行的
+    - cron: '0 19 * * *'  # 每天 UTC 19:00（北京时间凌晨 3:00）
+  workflow_dispatch:     # 支持手动触发
 
 jobs:
   check-subscriptions:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository (本仓库)
+      # 1. 拉取本仓库代码
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: 显示当前目录文件（调试用，可删）
+      # 2. 显示当前目录文件（方便调试）
+      - name: List all files in current directory
         run: |
           echo "当前目录的所有文件:"
-          ls -al
+          ls -la
 
-      - name: Run subscription checker（核心）
+      # 3. 运行订阅检查容器
+      - name: Run subscription checker
         run: |
           docker run --rm \
             -v ${{ github.workspace }}/config:/app/config \
             -v ${{ github.workspace }}/output:/app/output \
             ghcr.io/beck-8/subs-check:latest
 
-      - name: Checkout 目标仓库（你要推送的仓库）
+      # 4. 拉取目标仓库 oyunop/v2ray_configs
+      - name: Checkout target repository
         uses: actions/checkout@v4
         with:
-          repository: oyunop/v2ray_configs   # ← 改成你的目标仓库
-          token: ${{ secrets.PAT_TOKEN }}    # 必须是带 repo 权限的 PAT
+          repository: oyunop/v2ray_configs
+          token: ${{ secrets.PAT_TOKEN }}   # 确保你在仓库 Secrets 中已添加 PAT_TOKEN
           path: target-repo
 
-      - name: 复制结果并推送到目标仓库
+      # 5. 复制文件并自动提交推送（只在有变化时提交）
+      - name: Copy and commit changes
         run: |
-          # 防止 output 目录为空导致 cp 报错
-          if [ -z "$(ls -A output)" ]; then
-            echo "output 目录为空，跳过推送"
-            exit 0
-          fi
-          
-          cp -r output/* target-repo/ || echo "复制失败，但不阻断流程"
-          
+          cp -r output/* target-repo/
           cd target-repo
           
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           
-          git add *.txt *.yaml *.yml || echo "添加文件时出错"
+          git add *.txt
           
           if git diff --staged --quiet; then
-            echo "没有文件变更，无需提交"
+            echo "没有文件变动，跳过提交"
           else
-            git commit -m "🤖 Auto update subscriptions $(date '+%Y-%m-%d %H:%M:%S')" 
+            git commit -m "更新订阅检查结果 $(date '+%Y-%m-%d %H:%M:%S')"
             git push
-            echo "已成功推送更新！"
+            echo "已成功提交并推送更新"
           fi
+
+      # 6. 完成后清理 workspace（可选，保持 Actions 缓存干净）
+      - name: Clean up
+        if: always()
+        run: |
+          rm -rf target-repo
