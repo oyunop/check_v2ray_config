@@ -1,42 +1,62 @@
-name: Subscription Checker
+name: Subscription Checker + Auto Kill Duplicates
 
 on:
   schedule:
-    - cron: '0 19 * * *'  # 每天3点
-  workflow_dispatch:        # 允许手动触发
+    - cron: '0 19 * * *'   # 北京时间 3:00（UTC 19:00）
+  workflow_dispatch:
+
+# ────────────────────── 关键：自动取消正在运行的旧任务 ──────────────────────
+concurrency:
+  group: subscription-checker   # 同一组只能同时跑一个
+  cancel-in-progress: true      # 新任务启动时自动 kill 掉旧的正在运行的
 
 jobs:
   check-subscriptions:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout repository (本仓库)
         uses: actions/checkout@v4
-        
-      - name: List all files in current directory
+
+      - name: 显示当前目录文件（调试用，可删）
         run: |
           echo "当前目录的所有文件:"
           ls -al
 
-      - name: Run subscription checker
+      - name: Run subscription checker（核心）
         run: |
           docker run --rm \
             -v ${{ github.workspace }}/config:/app/config \
             -v ${{ github.workspace }}/output:/app/output \
             ghcr.io/jackrun123/subs-check:latest
 
-      - name: Checkout target repository
+      - name: Checkout 目标仓库（你要推送的仓库）
         uses: actions/checkout@v4
         with:
-          repository: oyunop/v2ray_configs  # 替换为目标仓库
-          token: ${{ secrets.PAT_TOKEN }}  # 使用 Personal Access Token
+          repository: oyunop/v2ray_configs   # ← 改成你的目标仓库
+          token: ${{ secrets.PAT_TOKEN }}    # 必须是带 repo 权限的 PAT
           path: target-repo
 
-      - name: Copy and commit changes
+      - name: 复制结果并推送到目标仓库
         run: |
-          cp -r output/* target-repo/
+          # 防止 output 目录为空导致 cp 报错
+          if [ -z "$(ls -A output)" ]; then
+            echo "output 目录为空，跳过推送"
+            exit 0
+          fi
+          
+          cp -r output/* target-repo/ || echo "复制失败，但不阻断流程"
+          
           cd target-repo
+          
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add *.txt
-          git commit -m "更新订阅检查结果" || echo "没有变更需要提交"
-          git push
+          
+          git add *.txt *.yaml *.yml || echo "添加文件时出错"
+          
+          if git diff --staged --quiet; then
+            echo "没有文件变更，无需提交"
+          else
+            git commit -m "🤖 Auto update subscriptions $(date '+%Y-%m-%d %H:%M:%S')" 
+            git push
+            echo "已成功推送更新！"
+          fi
