@@ -1,42 +1,44 @@
-name: Subscription Checker + Auto Kill + Keep Schedule
+name: Subscription Checker (正式版 - 当前为2分钟测试模式)
 
 on:
   schedule:
     - cron: '0 19 * * *'      # 北京时间每天 03:00 自动运行
-  workflow_dispatch:         # 支持手动一键触发
+  workflow_dispatch:         # 支持手动触发
 
-# 自动取消旧的重复运行（防止手动狂点导致堆积）
 concurrency:
   group: subscription-checker
-  cancel-in-progress: true
+  cancel-in-progress: true   # 自动取消旧的重复运行
 
 jobs:
   check-subscriptions:
     runs-on: ubuntu-latest
-    timeout-minutes: 40        # 整个任务最多40分钟，GitHub 终极保险
+    timeout-minutes: 40
 
     steps:
       - name: Checkout 本仓库
         uses: actions/checkout@v4
 
-      - name: Debug：列出当前目录文件
-        run: ls -la
-
-      - name: 运行 subs-check（30分钟必杀，三保险）
+      - name: Debug：列出当前目录（方便看日志）
         run: |
-          # 第一保险：timeout 强杀
-          timeout --signal=KILL 1800 docker run --rm \
+          echo "=== 当前仓库根目录文件 ==="
+          ls -la
+
+      - name: 【核心】运行 beck-8 最新镜像 - 测试用2分钟强制终止
+        run: |
+          echo "开始运行 ghcr.io/beck-8/subs-check:latest"
+          echo "当前设置为 120 秒（2分钟）后强制杀进程，测试正常请改回 1800"
+
+          timeout --signal=KILL 120 docker run --rm \
             -v ${{ github.workspace }}/config:/app/config \
             -v ${{ github.workspace }}/output:/app/output \
-            ghcr.io/jackrun123/subs-check:latest \
-            || echo "容器已超时或异常，被强制终止（正常现象）"
+            ghcr.io/beck-8/subs-check:latest \
+            || echo "2分钟已到或异常，容器已被强制杀死（测试阶段完全正常）"
 
-          # 第二保险：清理可能残留的僵尸容器
-          docker ps -q --filter "ancestor=ghcr.io/jackrun123/subs-check" | xargs -r docker kill 2>/dev/null || true
-          docker rm -f $(docker ps -aq --filter "ancestor=ghcr.io/jackrun123/subs-check" --filter "status=exited") 2>/dev/null || true
+          # 保险清理残留容器
+          docker ps -aq --filter "ancestor=ghcr.io/beck-8/subs-check" | xargs -r docker kill 2>/dev/null || true
 
-          # 第三保险：无论前面成败，这里强制让步骤成功，继续往下走
-          exit 0
+          echo "=== 容器已结束，当前 output 目录内容 ==="
+          ls -la output/ || echo "output 目录为空或不存在"
 
       - name: Checkout 目标仓库（用于推送）
         uses: actions/checkout@v4
@@ -47,8 +49,8 @@ jobs:
 
       - name: 复制结果并推送到目标仓库
         run: |
-          # 如果 output 为空就跳过（防止空推送）
-          [ -z "$(ls -A output 2>/dev/null)" ] && echo "output 为空，跳过推送" && exit 0
+          [ ! -d "output" ] && echo "output 目录不存在，跳过推送" && exit 0
+          [ -z "$(ls -A output)" ] && echo "output 为空，跳过推送" && exit 0
 
           cp -r output/* target-repo/ || echo "复制失败但继续"
 
@@ -61,7 +63,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "没有文件变化，跳过提交"
           else
-            git commit -m "🤖 Auto update subscriptions $(date '+%Y-%m-%d %H:%M') (UTC)"
+            git commit -m "Auto update subscriptions $(date '+%Y-%m-%d %H:%M') (UTC)"
             git push
-            echo "成功推送更新！"
+            echo "成功推送到目标仓库！"
           fi
