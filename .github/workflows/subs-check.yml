@@ -38,7 +38,6 @@ jobs:
           token: ${{ secrets.PAT_TOKEN }}
           path: target-repo
 
-      - name: 复制结果并推送到目标仓库（永不报错版）
       - name: 复制并强制推送（永不漏更，带时间戳）
         run: |
           if [ ! -d "output" ] || [ -z "$(ls -A output)" ]; then
