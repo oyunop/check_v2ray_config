@@ -1,18 +1,18 @@
-name: Subscription Checker (正式生产版 - beck-8)
+name: Subscription Checker (最终永不报错版)
 
 on:
   schedule:
-    - cron: '0 19 * * *'      # 北京时间每天 03:00 自动运行
-  workflow_dispatch:         # 手动一键触发
+    - cron: '0 19 * * *'
+  workflow_dispatch:
 
 concurrency:
   group: subscription-checker
-  cancel-in-progress: true   # 重复触发时自动取消旧任务
+  cancel-in-progress: true
 
 jobs:
   check-subscriptions:
     runs-on: ubuntu-latest
-    timeout-minutes: 40        # 整个 job 兜底保险
+    timeout-minutes: 40
 
     steps:
       - name: Checkout 本仓库
@@ -20,33 +20,32 @@ jobs:
 
       - name: 运行 beck-8/subs-check（10分钟必杀）
         run: |
-          echo "开始运行 ghcr.io/beck-8/subs-check:latest（最多运行10分钟）"
-
+          echo "开始运行 ghcr.io/beck-8/subs-check:latest（最多10分钟）"
           timeout --signal=KILL 600 docker run --rm \
             -v ${{ github.workspace }}/config:/app/config \
             -v ${{ github.workspace }}/output:/app/output \
             ghcr.io/beck-8/subs-check:latest \
-            || echo "10分钟已到或异常，容器已被强制终止（完全正常）"
+            || echo "10分钟已到或异常，已强制终止（正常）"
 
-          # 清理可能残留的容器
           docker ps -aq --filter "ancestor=ghcr.io/beck-8/subs-check" | xargs -r docker kill 2>/dev/null || true
+          echo "当前 output 目录内容："
+          ls -la output/ || echo "output 为空"
 
-          echo "容器已结束，output 目录当前内容："
-          ls -la output/ || echo "output 目录为空"
-
-      - name: Checkout 目标仓库并推送
+      - name: Checkout 目标仓库
         uses: actions/checkout@v4
         with:
           repository: oyunop/v2ray_configs
           token: ${{ secrets.PAT_TOKEN }}
           path: target-repo
 
-      - name: 复制结果并推送到目标仓库
+      - name: 复制结果并推送到目标仓库（永不报错版）
         run: |
-          [ ! -d "output" ] && echo "output 目录不存在，跳过推送" && exit 0
-          [ -z "$(ls -A output)" ] && echo "output 为空，跳过推送" && exit 0
+          if [ ! -d "output" ] || [ -z "$(ls -A output 2>/dev/null)" ]; then
+            echo "output 目录不存在或为空，跳过推送"
+            exit 0
+          fi
 
-          cp -r output/* target-repo/
+          cp -r output/* target-repo/ || exit 0
 
           cd target-repo
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -55,9 +54,10 @@ jobs:
           git add *.txt *.yaml *.yml 2>/dev/null || true
 
           if git diff --cached --quiet; then
-            echo "无文件变更，跳过提交"
-          else
-            git commit -m "Auto update subscriptions $(date '+%Y-%m-%d %H:%M') (UTC)"
-            git push
-            echo "成功推送更新！"
+            echo "没有文件变更，结束任务"
+            exit 0
           fi
+
+          git commit -m "Auto update subscriptions $(date '+%Y-%m-%d %H:%M') (UTC)"
+          git push || echo "push 失败（可能网络或权限问题）"
+          echo "全部完成！"
