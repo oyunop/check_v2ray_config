@@ -18,19 +18,24 @@ jobs:
       - name: Checkout 本仓库
         uses: actions/checkout@v4
 
-      - name: 运行 beck-8/subs-check（10分钟必杀）
+      - name: 运行 subs-check（10分钟必杀，永不 canceled）
         run: |
-          echo "开始运行 ghcr.io/beck-8/subs-check:latest（最多10分钟）"
-          timeout --signal=KILL 2400 docker run --rm \
+          echo "开始运行 beck-8/subs-check（最多10分钟）"
+          
+          timeout --signal=KILL 600 docker run --rm \
             -v ${{ github.workspace }}/config:/app/config \
             -v ${{ github.workspace }}/output:/app/output \
             ghcr.io/beck-8/subs-check:latest \
-            || echo "10分钟已到或异常，已强制终止（正常）"
+            || echo "容器已超时或异常，被强制终止（完全正常）"
 
+          # 强制清理残留容器（每行独立执行，永不粘连）
           docker ps -aq --filter "ancestor=ghcr.io/beck-8/subs-check" | xargs -r docker kill 2>/dev/null || true
-          echo "当前 output 目录内容："
-          ls -la output/ || echo "output 为空"
-
+          
+          # 这一行单独一行，永不和上一行粘在一起
+          echo "=== output 目录当前内容 ==="
+          ls -la output/ || echo "output 目录为空或不存在"
+          
+          echo "Docker 步骤彻底结束，进入下一步"
       - name: Checkout 目标仓库
         uses: actions/checkout@v4
         with:
