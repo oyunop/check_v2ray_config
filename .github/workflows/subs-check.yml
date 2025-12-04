@@ -38,7 +38,7 @@ jobs:
           token: ${{ secrets.PAT_TOKEN }}
           path: target-repo
 
-            - name: 复制结果并推送到目标仓库（永不 canceled 版）
+      - name: 复制结果并推送到目标仓库（永不 canceled 版）
         run: |
           # 如果 output 不存在或为空，直接跳过，但绝不 exit 0 杀死进程
           if [ ! -d "output" ] || [ -z "$(ls -A output 2>/dev/null)" ]; then
