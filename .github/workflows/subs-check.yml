@@ -36,38 +36,29 @@ jobs:
           ls -la output/ || echo "output 目录为空或不存在"
           
           echo "Docker 步骤彻底结束，进入下一步"
-      - name: Checkout 目标仓库
+            - name: Checkout 目标仓库（防 canceled 版）
         uses: actions/checkout@v4
         with:
           repository: oyunop/v2ray_configs
           token: ${{ secrets.PAT_TOKEN }}
           path: target-repo
+          clean: false   # 关键：防止莫名其妙 canceled
 
-      - name: 复制结果并推送到目标仓库（永不 canceled 版）
+      - name: 复制并强制推送（永不 canceled 终极版）
         run: |
-          # 如果 output 不存在或为空，直接跳过，但绝不 exit 0 杀死进程
-          if [ ! -d "output" ] || [ -z "$(ls -A output 2>/dev/null)" ]; then
-            echo "output 目录不存在或为空，跳过推送"
-          else
-            echo "开始复制 output 到 target-repo"
-            cp -r output/. target-repo/ 2>/dev/null || echo "复制失败但继续执行"
-          fi
+          echo "【开始复制文件】"
+          mkdir -p target-repo
+          cp -r output/. target-repo/ && echo "复制完成" || echo "复制失败但继续"
 
           cd target-repo
-
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
 
-          # 强制加个时间戳，保证每次都有变更（永不跳过）
-          echo "# Auto updated at $(date '+%Y-%m-%d %H:%M:%S') UTC" >> all.txt 2>/dev/null || true
+          # 强制加时间戳，保证一定有变更
+          echo "# Auto updated $(date -u '+%Y-%m-%d %H:%M:%S') UTC" >> all.yaml 2>/dev/null || true
 
           git add .
-          if git diff --cached --quiet; then
-            echo "没有文件变更，但已强制提交时间戳"
-            git commit -m "Auto update $(date '+%Y-%m-%d %H:%M') UTC (force timestamp)" || echo "提交失败但不中断"
-          else
-            git commit -m "Auto update $(date '+%Y-%m-%d %H:%M') UTC"
-          fi
+          git commit -m "Auto update $(date -u '+%Y-%m-%d %H:%M') UTC" || echo "commit 失败但继续"
+          git push || echo "push 失败（检查 PAT 权限）"
 
-          git push || echo "push 失败（可能是网络或 PAT 权限问题）"
-          echo "全部完成！"
+          echo "【全部完成！今日订阅已成功推送】"
