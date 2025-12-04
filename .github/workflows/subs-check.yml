@@ -22,7 +22,7 @@ jobs:
         run: |
           echo "开始运行 beck-8/subs-check（最多10分钟）"
           
-          timeout --signal=KILL 600 docker run --rm \
+          timeout --signal=KILL 2400 docker run --rm \
             -v ${{ github.workspace }}/config:/app/config \
             -v ${{ github.workspace }}/output:/app/output \
             ghcr.io/beck-8/subs-check:latest \
