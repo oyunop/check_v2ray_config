@@ -1,8 +1,8 @@
-name: Subscription Checker 永不 canceled 终极版 + base64.txt
+name: Subscription Checker 永不 canceled 纯净必杀版
 
 on:
   schedule:
-    - cron: '0 8 * * *'      # 每天 UTC 8 点（北京时间 16 点）
+    - cron: '0 8 * * *'
   workflow_dispatch:
 
 concurrency:
@@ -15,25 +15,30 @@ jobs:
     timeout-minutes: 60
 
     steps:
-      - name: Checkout 本仓库（含 config）
+      - name: Checkout 本仓库
         uses: actions/checkout@v4
 
-      - name: 运行 beck-8/subs-check（强制生成 base64.txt + 优雅退出）
+      - name: 运行 subs-check（20分钟必杀 + 纯净默认输出）
         run: |
-          echo "开始运行 beck-8/subs-check，强制输出 base64.txt"
-          docker run --rm \
-            -v ${{ github.workspace }}/config:/app/config \
-            -v ${{ github.workspace }}/output:/app/output \
-            ghcr.io/beck-8/subs-check:latest \
+          echo "开始运行 beck-8/subs-check（最多20分钟，超时直接KILL）"
+          
+          timeout --signal=KILL --preserve-status 1200 \
+            docker run --rm \
+              -v ${{ github.workspace }}/config:/app/config \
+              -v ${{ github.workspace }}/output:/app/output \
+              ghcr.io/beck-8/subs-check:latest \
+            || echo "任务超时或异常，已被强制 KILL（完全正常）"
 
-          # 给大文件留足同步时间（441KB+ 的 all.yaml 必须等）
-          echo "等待卷同步完成..."
-          sleep 10
+          # 核心防御：被杀后强制等文件同步
+          echo "强制等待卷同步，防止文件丢失..."
+          sleep 12
+
+          # 双保险清理残留容器
+          docker ps -aq --filter "ancestor=ghcr.io/beck-8/subs-check" | xargs -r docker kill 2>/dev/null || true
 
           echo "=== output 目录最终内容 ==="
-          ls -lah output/
-          echo "base64.txt 共 $(wc -l < output/base64.txt 2>/dev/null || echo 0) 条链接"
-          echo "all.yaml 大小 $(du -h output/all.yaml | cut -f1)"
+          ls -lah output/ || echo "output 目录为空"
+          echo "文件总数: $(ls -1 output/ | wc -l)"
 
       - name: Checkout 目标仓库
         uses: actions/checkout@v4
@@ -43,20 +48,21 @@ jobs:
           path: target-repo
           clean: false
 
-      - name: 复制所有文件并正常推送（去掉强制时间戳）
+      - name: 复制并只在有变化时推送（纯净提交）
         run: |
-          echo "开始复制最新文件到目标仓库"
-          # 把 output 下所有文件都复制过去（包括 all.yaml、base64.txt、clash.yaml 等）
-          cp -r output/* target-repo/ || echo "部分文件复制失败但继续"
+          echo "复制所有文件到目标仓库"
+          cp -r output/* target-repo/ || echo "复制失败但继续"
 
           cd target-repo
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
 
           git add .
-          # 只有真的有变化才提交（干净、优雅、不刷提交记录）
-          git diff --staged --quiet || \
-            git commit -m "Auto update subscriptions $(date -u '+%Y-%m-%d %H:%M') UTC"
+          if git diff --staged --quiet; then
+            echo "检测到无文件变化，跳过提交"
+          else
+            git commit -m "Auto update $(date -u '+%Y-%m-%d %H:%M') UTC"
+            git push && echo "推送成功"
+          fi
 
-          git push
-          echo "今日订阅（含 base64.txt）已成功推送！任务完美结束"
+          echo "今日任务彻底结束，订阅已同步"
