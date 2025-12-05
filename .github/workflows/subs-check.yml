@@ -25,7 +25,6 @@ jobs:
             -v ${{ github.workspace }}/config:/app/config \
             -v ${{ github.workspace }}/output:/app/output \
             ghcr.io/beck-8/subs-check:latest \
-            --output-base64 base64.txt      # 关键：100% 生成 base64.txt
 
           # 给大文件留足同步时间（441KB+ 的 all.yaml 必须等）
           echo "等待卷同步完成..."
