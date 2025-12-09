@@ -104,19 +104,7 @@ sub-urls:
   - https://raw.githubusercontent.com/Pawdroid/Free-servers/refs/heads/main/sub
   - https://raw.githubusercontent.com/aiboboxx/v2rayfree/refs/heads/main/v2
   - https://raw.githubusercontent.com/acymz/AutoVPN/main/data/V2.txt
-
-  - https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/wenode.txt
-  - https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/v2rayshare.txt
-  - https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/nodefree.txt
-  - https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/ndnode.txt
-  - https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/clashmeta.txt
-  
   - https://raw.githubusercontent.com/ebrasha/free-v2ray-public-list/refs/heads/main/all_extracted_configs.txt
-  - https://raw.githubusercontent.com/xiaoji235/airport-free/refs/heads/main/v2ray.txt
-  # - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/protocols/vl.txt
-  # - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/protocols/vm.txt
-  # - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/protocols/tr.txt
-  # - https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/protocols/ss.txt
-  # - https://raw.githubusercontent.com/barry-far/V2ray-config/main/All_Configs_base64_Sub.txt
-  # - https://raw.githubusercontent.com/ggborr/FREEE-VPN/refs/heads/main/11v2ray
+  - https://raw.githubusercontent.com/barry-far/V2ray-config/main/All_Configs_base64_Sub.txt
   - https://github.com/kismetpro/NodeSuber/raw/refs/heads/main/out/All_Configs_Sub.txt
+  - https://raw.githubusercontent.com/PuddinCat/BestClash/refs/heads/main/proxies.yaml
