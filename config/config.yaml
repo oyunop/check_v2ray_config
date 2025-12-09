@@ -106,5 +106,5 @@ sub-urls:
   - https://raw.githubusercontent.com/acymz/AutoVPN/main/data/V2.txt
   - https://raw.githubusercontent.com/ebrasha/free-v2ray-public-list/refs/heads/main/all_extracted_configs.txt
   - https://raw.githubusercontent.com/barry-far/V2ray-config/main/All_Configs_base64_Sub.txt
-  - https://github.com/kismetpro/NodeSuber/raw/refs/heads/main/out/All_Configs_Sub.txt
+  - https://raw.githubusercontent.com/kismetpro/NodeSuber/refs/heads/main/out/All_Configs_Sub.txt
   - https://raw.githubusercontent.com/PuddinCat/BestClash/refs/heads/main/proxies.yaml
