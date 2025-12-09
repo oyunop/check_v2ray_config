@@ -228,6 +228,4 @@ sub-urls:
   - https://raw.githubusercontent.com/barry-far/V2ray-Configs/raw/main/All_Configs_base64_Sub.txt  
   - https://raw.githubusercontent.com/Net-Account/Config/main/Net-Account.txt  
   - https://raw.githubusercontent.com/ALIILAPRO/v2rayNG-Config/main/sub.txt  
-  - https://raw.githubusercontent.com/R-the-coder/V2ray-configs/main/config.txt  
-
-这些链接足够你用很久了，如果某些失效，直接删掉换下一个。推荐把它们全加到订阅组里，客户端会自动筛选可用节点。享受自由上网！🚀
+  - https://raw.githubusercontent.com/R-the-coder/V2ray-configs/main/config.txt
