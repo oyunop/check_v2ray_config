@@ -2,7 +2,7 @@
 print-progress: true
 
 # 并发线程数
-concurrent: 50
+concurrent: 200
 
 check-interval: 36000
 # 超时时间(毫秒)(节点的最大延迟)
