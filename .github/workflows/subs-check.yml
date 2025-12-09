@@ -12,35 +12,38 @@ concurrency:
 jobs:
   check-subscriptions:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 120  # 保留全局超时保险
 
     steps:
       - name: Checkout 本仓库
         uses: actions/checkout@v4
 
-      - name: 运行 subs-check（20分钟必杀 + 纯净默认输出）
+      - name: 运行 subs-check（检测 all.yaml 变化后延迟退出）
+        id: check
         run: |
-          echo "开始运行 beck-8/subs-check（最多20分钟，超时直接KILL）"
-          
-          timeout --signal=KILL --preserve-status 1800 \
-            docker run --rm \
-              -v ${{ github.workspace }}/config:/app/config \
-              -v ${{ github.workspace }}/output:/app/output \
-              ghcr.io/beck-8/subs-check:latest \
-            || echo "任务超时或异常，已被强制 KILL（完全正常）"
+          docker run --rm \
+            -v ${{ github.workspace }}/config:/app/config \
+            -v ${{ github.workspace }}/output:/app/output \
+            ghcr.io/beck-8/subs-check:latest
 
-          # 核心防御：被杀后强制等文件同步
-          echo "强制等待卷同步，防止文件丢失..."
-          sleep 12
+          # 检测 all.yaml 是否变化
+          if git -C output diff --quiet all.yaml; then
+            echo "未检测到 all.yaml 变化，10秒后终止进程"
+            sleep 10  # 等待10秒
+            exit 0    # 正常退出
+          else
+            echo "检测到 all.yaml 变化，等待10秒后继续执行"
+            sleep 10  # 等待10秒
+            echo "::set-output name=status::changed"
+          fi
 
-          # 双保险清理残留容器
+      - name: 清理残留容器（防御性操作）
+        if: steps.check.outputs.status == 'success'
+        run: |
           docker ps -aq --filter "ancestor=ghcr.io/beck-8/subs-check" | xargs -r docker kill 2>/dev/null || true
 
-          echo "=== output 目录最终内容 ==="
-          ls -lah output/ || echo "output 目录为空"
-          echo "文件总数: $(ls -1 output/ | wc -l)"
-
       - name: Checkout 目标仓库
+        if: steps.check.outputs.status == 'changed'
         uses: actions/checkout@v4
         with:
           repository: oyunop/v2ray_configs
@@ -48,21 +51,20 @@ jobs:
           path: target-repo
           clean: false
 
-      - name: 复制并只在有变化时推送（纯净提交）
+      - name: 复制并推送变更
+        if: steps.check.outputs.status == 'changed'
         run: |
-          echo "复制所有文件到目标仓库"
-          cp -r output/* target-repo/ || echo "复制失败但继续"
-
+          cp -r output/* target-repo/
           cd target-repo
+
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
 
           git add .
           if git diff --staged --quiet; then
-            echo "检测到无文件变化，跳过提交"
+            echo "无实际变更，终止推送"
+            exit 0
           else
             git commit -m "Auto update $(date -u '+%Y-%m-%d %H:%M') UTC"
             git push && echo "推送成功"
           fi
-
-          echo "今日任务彻底结束，订阅已同步"
