@@ -93,7 +93,6 @@ sub-urls:
   - https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml
   - https://raw.githubusercontent.com/zhangkaiitugithub/passcro/main/speednodes.yaml
   - https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/snippets/nodes.meta.yml
-  - https://raw.githubusercontent.com/anaer/Sub/refs/heads/main/clash.yaml
   - https://raw.githubusercontent.com/free18/v2ray/refs/heads/main/c.yaml
   - https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml
   - https://raw.githubusercontent.com/ripaojiedian/freenode/main/clash
@@ -106,7 +105,6 @@ sub-urls:
   - https://raw.githubusercontent.com/barry-far/V2ray-config/main/All_Configs_base64_Sub.txt
   - https://raw.githubusercontent.com/kismetpro/NodeSuber/refs/heads/main/out/All_Configs_Sub.txt
   - https://raw.githubusercontent.com/PuddinCat/BestClash/refs/heads/main/proxies.yaml
-  - https://raw.githubusercontent.com/HamoonSoleimani/Pr0xySh4rk/refs/heads/main/Pr0xySh4rk_SubBase64.txt
   - https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml 
   - https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta-2.yaml
   - https://raw.githubusercontent.com/snakem982/proxypool/main/source/v2ray-2.txt
@@ -133,7 +131,6 @@ sub-urls:
   - https://raw.githubusercontent.com/Arefgh72/v2ray-proxy-pars-tester/main/output/github_all.txt
   - https://raw.githubusercontent.com/SoliSpirit/v2ray-configs/refs/heads/main/all_configs.txt
   - https://raw.githubusercontent.com/bin1site1/V2rayFree/refs/heads/main/config.txt
-  - https://raw.githubusercontent.com/shichongzheng/v2rayfree/main/v2rayfree
   - https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/All_Configs_base64_Sub.txt
   - https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no1.txt
   - https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no1.txt  
@@ -145,10 +142,7 @@ sub-urls:
   - https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no7.txt  
   - https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no8.txt  
   - https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no9.txt  
-  - https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no10.txt  
-  - https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no11.txt  
-  - https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no12.txt   
-  - https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no13.txt  
+  - https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no10.txt      
   - https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/v2ray/subs/sub1.txt  
   - https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/v2ray/subs/sub2.txt  
   - https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/v2ray/subs/sub3.txt  
@@ -197,17 +191,7 @@ sub-urls:
   - https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub7.txt  
   - https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub8.txt  
   - https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub9.txt  
-  - https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub10.txt  
-  - https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Sub1.txt  
-  - https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Sub2.txt  
-  - https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Sub3.txt  
-  - https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Sub4.txt  
-  - https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Sub5.txt  
-  - https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Sub6.txt  
-  - https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Sub7.txt  
-  - https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Sub8.txt  
-  - https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Sub9.txt  
-  - https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Sub10.txt  
+  - https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub10.txt   
   - https://raw.githubusercontent.com/M-Mashreghi/Free-V2ray-Collector/main/shuffle/Sub1_shuffled.conf  
   - https://raw.githubusercontent.com/M-Mashreghi/Free-V2ray-Collector/main/shuffle/Sub2_shuffled.conf  
   - https://raw.githubusercontent.com/M-Mashreghi/Free-V2ray-Collector/main/shuffle/Sub3_shuffled.conf  
@@ -224,9 +208,7 @@ sub-urls:
   - https://raw.githubusercontent.com/M-Mashreghi/Free-V2ray-Collector/main/shuffle/Sub14_shuffled.conf  
   - https://raw.githubusercontent.com/M-Mashreghi/Free-V2ray-Collector/main/shuffle/Sub15_shuffled.conf  
   - https://raw.githubusercontent.com/M-Mashreghi/Free-V2ray-Collector/main/shuffle/Sub16_shuffled.conf  
-  - https://raw.githubusercontent.com/ebrasha/free-v2ray-public-list/refs/heads/main/all_extracted_configs.txt  
-  - https://raw.githubusercontent.com/barry-far/V2ray-Configs/raw/main/All_Configs_base64_Sub.txt  
-  - https://raw.githubusercontent.com/Net-Account/Config/main/Net-Account.txt  
+  - https://raw.githubusercontent.com/ebrasha/free-v2ray-public-list/refs/heads/main/all_extracted_configs.txt
   - https://raw.githubusercontent.com/ALIILAPRO/v2rayNG-Config/main/sub.txt  
   - https://raw.githubusercontent.com/R-the-coder/V2ray-configs/main/config.txt
   - https://gist.githubusercontent.com/shuaidaoya/9e5cf2749c0ce79932dd9229d9b4162b/raw/base64.txt
