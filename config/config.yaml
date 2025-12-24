@@ -222,3 +222,37 @@ sub-urls:
   - https://gist.githubusercontent.com/shuaidaoya/9e5cf2749c0ce79932dd9229d9b4162b/raw/base64.txt
   - https://raw.githubusercontent.com/Sage-77/V2ray-configs/main/config.txt
   - https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.txt
+  - https://raw.githubusercontent.com/AzadNetCH/Clash/main/AzadNet.txt
+  - https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/hysteria2.txt
+  - https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/ss.txt
+  - https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/trojan.txt
+  - https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/vless.txt
+  - https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/vmess.txt
+  - https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/v2ray/all_sub.txt
+  - https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/v2ray/subs/sub1.txt
+  - https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/v2ray/subs/sub2.txt
+  - https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/v2ray/subs/sub3.txt
+  - https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/v2ray/subs/sub39.txt
+  - https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/v2ray/subs/sub4.txt
+  - https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/v2ray/super-sub.txt
+  - https://raw.githubusercontent.com/barry-far/V2ray-config/main/All_Configs_Sub.txt
+  - https://raw.githubusercontent.com/barry-far/V2ray-config/main/All_Configs_base64_Sub.txt
+  - https://raw.githubusercontent.com/barry-far/V2ray-config/main/Splitted-By-Protocol/ss.txt
+  - https://raw.githubusercontent.com/barry-far/V2ray-config/main/Splitted-By-Protocol/ssr.txt
+  - https://raw.githubusercontent.com/barry-far/V2ray-config/main/Splitted-By-Protocol/trojan.txt
+  - https://raw.githubusercontent.com/barry-far/V2ray-config/main/Splitted-By-Protocol/vless.txt
+  - https://raw.githubusercontent.com/barry-far/V2ray-config/main/Splitted-By-Protocol/vmess.txt
+  - https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub1.txt
+  - https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub2.txt
+  - https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub3.txt
+  - https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub4.txt
+  - https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub5.txt
+  - https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub6.txt
+  - https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub7.txt
+  - https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub8.txt
+  - https://raw.githubusercontent.com/dalazhi/v2ray/refs/heads/main/data/base64-1.txt
+  - https://raw.githubusercontent.com/ovmvo/SubShare/refs/heads/main/sub/permanent/mihomo.yaml
+  - https://raw.githubusercontent.com/snakem982/proxypool/main/source/v2ray-2.txt
+  - https://raw.githubusercontent.com/zhangkaiitugithub/passcro/main/speednodes.yaml
+  - https://raw.githubusercontent.com/ermaozi01/free_clash_vpn/main/subscribe/clash.yml
+  - https://raw.githubusercontent.com/ermaozi01/free_clash_vpn/main/subscribe/v2ray.txt
