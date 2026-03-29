@@ -56,7 +56,7 @@ mihomo-api-secret: ""
 
 # 保存方法
 # 目前支持的保存方法: r2, local, gist, webdav
-save-method: local
+save-method: local，gist
 
 # webdav
 #webdav-url: "https://example.com/dav/"
