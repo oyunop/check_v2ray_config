@@ -1,5 +1,5 @@
 # 是否显示进度
-print-progress: true
+print-progress: false
 
 # 并发线程数（测活阶段使用此值）
 concurrent: 500
