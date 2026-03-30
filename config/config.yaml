@@ -81,17 +81,17 @@ node-prefix: ""
   # - "YT-"                      # 保留解锁 YouTube Premium 的节点
 
 # 是否开启流媒体检测，其中IP欺诈依赖重命名
-media-check: false
+#media-check: false
 # 流媒体检测超时时间(秒)，未设置则默认为10秒
-media-check-timeout: 5
-platforms:
-  - iprisk
-  - tiktok
-  - youtube
-  - netflix
-  - disney
-  - openai
-  - gemini
+#media-check-timeout: 5
+#platforms:
+ # - iprisk
+#- tiktok
+  #- youtube
+ # - netflix
+ # - disney
+ # - openai
+ # - gemini
 
 # 保留之前测试成功的节点
 # 如果为true，则保留之前测试成功的节点，这样就不会因为上游链接更新，导致可用的节点被清除掉
