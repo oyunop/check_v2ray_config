@@ -50,7 +50,7 @@ listen-port: ":8199"
 
 # 以节点IP查询位置重命名节点
 # 质量差的节点可能造成IP查询失败，造成整体检查速度稍微变慢，默认true
-rename-node: true
+rename-node: false
 # 节点前缀，依赖rename-node为true才生效
 node-prefix: ""
 
@@ -81,13 +81,13 @@ node-prefix: ""
   # - "YT-"                      # 保留解锁 YouTube Premium 的节点
 
 # 是否开启流媒体检测，其中IP欺诈依赖重命名
-#media-check: false
+media-check: false
 # 流媒体检测超时时间(秒)，未设置则默认为10秒
-#media-check-timeout: 5
+media-check-timeout: 5
 #platforms:
  # - iprisk
-#- tiktok
-  #- youtube
+ # - tiktok
+ # - youtube
  # - netflix
  # - disney
  # - openai
