@@ -2,7 +2,7 @@
 print-progress: false
 
 # 并发线程数（测活阶段使用此值）
-concurrent: 500
+concurrent: 1000
 # 测速并发数（默认等于concurrent）
 # 建议设置较低值，避免并发抢带宽导致测速不准
 speed-concurrent: 20
