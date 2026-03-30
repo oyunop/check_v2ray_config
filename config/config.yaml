@@ -418,3 +418,8 @@ sub-urls:
   - https://raw.githubusercontent.com/hamedcode/port-based-v2ray-configs/main/sub/trojan.txt
   - https://raw.githubusercontent.com/hamedcode/port-based-v2ray-configs/main/sub/ss.txt
   - https://raw.githubusercontent.com/hamedcode/port-based-v2ray-configs/main/sub/other.txt
+  - https://raw.githubusercontent.com/iboxz/free-v2ray-collector/main/main/mix.txt
+  - https://raw.githubusercontent.com/F0rc3Run/F0rc3Run/refs/heads/main/Best-Results/proxies.txt
+  - https://raw.githubusercontent.com/Arefgh72/v2ray-proxy-pars-tester/main/output/github_all.txt
+  - https://raw.githubusercontent.com/xiaoji235/airport-free/refs/heads/main/v2ray.txt
+  
