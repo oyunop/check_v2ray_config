@@ -2,7 +2,7 @@ name: Subscription Checker 永不 canceled 纯净必杀版
 
 on:
   schedule:
-    - cron: '0 20 * * *'
+    - cron: '0 20 */3 * *'
   workflow_dispatch:
 
 concurrency:
