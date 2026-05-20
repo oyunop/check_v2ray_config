@@ -72,7 +72,7 @@ jobs:
 
           # 1. 清空目标目录 (除了 .git)，准备迎接新文件
           cd target-repo
-          rm -rf !(.*|.git) 2>/dev/null || echo "清理非隐藏文件"
+          find . -mindepth 1 -maxdepth 1 -not -name ".*" -not -name ".git" -exec rm -rf {} + 2>/dev/null || ech
           
           # 2. 复制新生成的订阅文件
           # 注意：这里直接复制 output 下的所有内容，保持文件名纯净
