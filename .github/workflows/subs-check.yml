@@ -34,10 +34,6 @@ jobs:
           echo "⏳ 强制等待文件系统同步 (10秒)..."
           sleep 10
 
-          # 📂 状态检查：输出结果目录详情
-          echo "📋 检测到的输出文件："
-          ls -la output/ 2>/dev/null || echo "⚠️ output 目录为空或未生成"
-
       - name: 📤 复制并推送 (仅变更提交)
         run: |  
           echo "🚚 开始同步文件到目标仓库..."
