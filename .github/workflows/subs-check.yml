@@ -66,8 +66,14 @@ jobs:
           path: target-repo
           clean: true  # 🔥 关键：强制清理目标目录，实现“纯净”覆盖，避免残留旧文件
 
-      - name: 📤 复制并推送 (仅变更提交)
+          
+      - name: 🐛 调试：检查 output 目录
         run: |
+          echo "🔍 检查 output 目录是否存在及内容..."
+          ls -la ../output/ || echo "❌ output 目录不存在"
+
+      - name: 📤 复制并推送 (仅变更提交)
+        run: |  
           echo "🚚 开始同步文件到目标仓库..."
 
           # 1. 清空目标目录 (除了 .git)，准备迎接新文件
@@ -76,7 +82,7 @@ jobs:
           
           # 2. 复制新生成的订阅文件
           # 注意：这里直接复制 output 下的所有内容，保持文件名纯净
-          cp -rf ../output/* ./ 2>/dev/null || echo "📦 无新文件生成，跳过复制"
+          cp -rf ../output/* ./ || echo "📦 复制文件时出错，请检查上方日志"
 
           # 3. Git 提交逻辑
           git config user.email "action-bot@noreply.github.com"
