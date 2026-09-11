@@ -2,8 +2,6 @@ name: 🚀 订阅检测与同步 (Node.js 24 安全版)
 
 on:
   schedule:
-    # ⏰ 每 3 天 晚上 20:00 运行 (UTC时间)
-    # 提示：根据哈尔滨时区(UTC+8)，这大约是凌晨4点。如需调整，请修改cron表达式。
     - cron: '0 20 */3 * *'
   workflow_dispatch:
 
@@ -17,17 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
-      # ==========================================================
-      # 🔧 2026 兼容性开关 (关键)
-      # ==========================================================
-      # 强制 JavaScript Actions 使用 Node.js 24
-      # 说明：GitHub 将在 2026 年 6 月 2 日强制默认使用 Node.js 24。
-      # 提前开启此变量可确保无缝过渡，避免因 Node.js 20 废弃导致的报错。
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-      
-      # 可选：如果你的 subs-check 配置中包含 GitHub API 请求，建议设置代理
-      # HTTPS_PROXY: ${{ secrets.HTTPS_PROXY }} # 如果需要，可在 Secrets 中配置代理
-
     steps:
       - name: 🔻 Checkout 主仓库 (配置文件)
         uses: actions/checkout@v4
@@ -35,11 +23,7 @@ jobs:
       - name: 🐳 运行 Subs-Check (带强杀机制)
         run: |
           echo "🚀 启动容器化检测任务..."
-          
-          # 使用 timeout 命令限制最大运行时间为 2400秒(40分钟)
-          # --signal=KILL: 超时后发送 SIGKILL 信号，强制终止所有子进程，防止卡死
-          # --preserve-status: 保留被杀进程的退出码
-          timeout --signal=KILL --preserve-status 360 \
+          timeout --signal=KILL --preserve-status 420 \
             docker run --rm \
               --name subs-check-run \
               -v "${{ github.workspace }}/config":/app/config \
@@ -47,39 +31,17 @@ jobs:
               ghcr.io/beck-8/subs-check:latest \
             || echo "🛑 任务结束：正常完成 或 已被超时强制终止"
 
-          # 🛑 关键等待：防止 Docker 卷挂载的文件系统缓存未同步导致文件丢失
           echo "⏳ 强制等待文件系统同步 (10秒)..."
           sleep 10
-
-          # 🧹 清理残留：虽然用了 --rm，但为了防止并发残留，再次确认清理
-          docker ps -aq --filter "name=subs-check-run" | xargs -r docker kill 2>/dev/null || true
 
           # 📂 状态检查：输出结果目录详情
           echo "📋 检测到的输出文件："
           ls -la output/ 2>/dev/null || echo "⚠️ output 目录为空或未生成"
 
-      - name: 🔁 Checkout 目标仓库 (纯净同步)
-        uses: actions/checkout@v4
-        with:
-          repository: oyunop/v2ray_configs
-          token: ${{ secrets.PAT_TOKEN }}
-          path: target-repo
-          clean: true  # 🔥 关键：强制清理目标目录，实现“纯净”覆盖，避免残留旧文件
-
-          
-      - name: 🐛 调试：检查 output 目录
-        run: |
-          echo "🔍 检查 output 目录是否存在及内容..."
-          ls -la ../output/ || echo "❌ output 目录不存在"
-
       - name: 📤 复制并推送 (仅变更提交)
         run: |  
           echo "🚚 开始同步文件到目标仓库..."
 
-          # 1. 清空目标目录 (除了 .git)，准备迎接新文件
-          cd target-repo
-          find . -mindepth 1 -maxdepth 1 -not -name ".*" -not -name ".git" -exec rm -rf {} + 2>/dev/null || ech
-          
           # 2. 复制新生成的订阅文件
           # 注意：这里直接复制 output 下的所有内容，保持文件名纯净
           cp -rf ../output/* ./ || echo "📦 复制文件时出错，请检查上方日志"
@@ -87,14 +49,7 @@ jobs:
           # 3. Git 提交逻辑
           git config user.email "action-bot@noreply.github.com"
           git config user.name "Subscription Bot"
-          
-          # 只有当有文件变化时才提交，减少仓库历史垃圾
-          if git diff --quiet; then
-            echo "✅ 无需提交：文件内容未发生变化"
-            exit 0
-          else
-            git add --all
-            git commit -m "🤖 Auto Update: $(date '+%Y-%m-%d %H:%M') UTC"
-            git push origin main
-            echo "🎉 推送成功！今日任务彻底结束。"
-          fi
+          git add --all
+          git commit -m "🤖 Auto Update: $(date '+%Y-%m-%d %H:%M') UTC"
+          git push origin main
+          echo "🎉 推送成功！今日任务彻底结束。"
