@@ -213,7 +213,6 @@ success-rate: 0
 sub-urls-remote:
   # - https://example.com/sub-list.txt
   # - https://example.com/sub-list.yaml
-  - https://raw.githubusercontent.com/beck-8/sub-urls/refs/heads/main/%E5%B0%8F%E8%80%8C%E7%BE%8E.txt
 
 # 订阅地址 支持 clash/mihomo/v2ray/base64 格式的订阅链接
 # 如果用户想明确使用clash类型，那可以在支持的订阅链接结尾加上 &flag=clash.meta
@@ -221,7 +220,6 @@ sub-urls-remote:
 # 如果用户想区分节点来源，可在订阅链接结尾加上 #备注 ，备注字段会自动加到节点命名结尾
 sub-urls:
   - https://raw.githubusercontent.com/SoliSpirit/v2ray-configs/main/all_configs.txt
-  
   - https://raw.githubusercontent.com/Leon406/SubCrawler/master/sub/share/vless
   - https://raw.githubusercontent.com/firefoxmmx2/v2rayshare_subcription/main/subscription/clash_sub.yaml
   - https://raw.githubusercontent.com/Q3dlaXpoaQ/V2rayN_Clash_Node_Getter/refs/heads/main/APIs/sc0.yaml
@@ -282,18 +280,7 @@ sub-urls:
   - https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/v2ray/subs/sub34.txt  
   - https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/v2ray/subs/sub35.txt  
   - https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/v2ray/subs/sub36.txt  
-  - https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/v2ray/subs/sub37.txt  
-  - https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/v2ray/subs/sub38.txt  
-  - https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub1.txt  
-  - https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub2.txt  
-  - https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub3.txt  
-  - https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub4.txt  
-  - https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub5.txt  
-  - https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub6.txt  
-  - https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub7.txt  
-  - https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub8.txt  
-  - https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub9.txt  
-  - https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub10.txt   
+  - https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/v2ray/subs/sub37.txt    
   - https://raw.githubusercontent.com/ebrasha/free-v2ray-public-list/refs/heads/main/all_extracted_configs.txt
   - https://raw.githubusercontent.com/ALIILAPRO/v2rayNG-Config/main/sub.txt  
   - https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.txt
@@ -406,31 +393,18 @@ sub-urls:
   - https://raw.githubusercontent.com/iboxz/free-v2ray-collector/main/main/mix.txt
   - https://raw.githubusercontent.com/ebrasha/free-v2ray-public-list/refs/heads/main/all_extracted_configs.txt
   - https://raw.githubusercontent.com/MahanKenway/Freedom-V2Ray/main/configs/mix.txt
-  - https://github.com/Epodonios/v2ray-configs/raw/main/All_Configs_Sub.txt
   - https://github.com/Epodonios/v2ray-configs/raw/main/All_Configs_base64_Sub.txt
   - https://raw.githubusercontent.com/bin1site1/V2rayFree/refs/heads/main/config.txt
   - https://raw.githubusercontent.com/hello-world-1989/cn-news/main/end-gfw-together
   - https://raw.githubusercontent.com/hello-world-1989/cn-news/refs/heads/main/clash.yaml
-  - https://raw.githubusercontent.com/wenxig/free-nodes-sub/refs/heads/main/data/clash.yml
   - https://raw.githubusercontent.com/hamedcode/port-based-v2ray-configs/main/sub/vless.txt
   - https://raw.githubusercontent.com/hamedcode/port-based-v2ray-configs/main/sub/vmess.txt
   - https://raw.githubusercontent.com/hamedcode/port-based-v2ray-configs/main/sub/trojan.txt
   - https://raw.githubusercontent.com/hamedcode/port-based-v2ray-configs/main/sub/ss.txt
-  - https://raw.githubusercontent.com/hamedcode/port-based-v2ray-configs/main/sub/other.txt
   - https://raw.githubusercontent.com/iboxz/free-v2ray-collector/main/main/mix.txt
   - https://raw.githubusercontent.com/F0rc3Run/F0rc3Run/refs/heads/main/Best-Results/proxies.txt
   - https://raw.githubusercontent.com/Arefgh72/v2ray-proxy-pars-tester/main/output/github_all.txt
   - https://raw.githubusercontent.com/xiaoji235/airport-free/refs/heads/main/v2ray.txt
-  - https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no1.txt
-  - https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no2.txt
-  - https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no3.txt
-  - https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no4.txt
-  - https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no5.txt
-  - https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no6.txt
-  - https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no7.txt
-  - https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no8.txt
-  - https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no9.txt
-  - https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no10.txt
   - https://raw.githubusercontent.com/Firmfox/proxify/main/v2ray_configs/subscriptions/subscription-1.txt
   - https://raw.githubusercontent.com/Firmfox/proxify/main/v2ray_configs/subscriptions/subscription-2.txt
   - https://raw.githubusercontent.com/Firmfox/proxify/main/v2ray_configs/subscriptions/subscription-3.txt
@@ -452,9 +426,6 @@ sub-urls:
   - https://raw.githubusercontent.com/Firmfox/proxify/main/v2ray_configs/subscriptions/subscription-19.txt
   - https://raw.githubusercontent.com/Firmfox/proxify/main/v2ray_configs/subscriptions/subscription-20.txt
   - https://raw.githubusercontent.com/0xRadikal/Free-v2ray-Configs/refs/heads/main/all/clash.yaml
-  - https://github.com/0xRadikal/Free-v2ray-Configs/blob/main/all/configs.txt
-  - https://github.com/0xRadikal/Free-v2ray-Configs/blob/main/all/configs_base64.txt
-  - https://github.com/0xRadikal/Free-v2ray-Configs/blob/main/all/singbox.json
   - https://raw.githubusercontent.com/lm705/vair/refs/heads/main/vless_alive.txt
   - https://raw.githubusercontent.com/mheidari98/.proxy/refs/heads/main/all
   - https://raw.githubusercontent.com/ebrasha/free-v2ray-public-list/refs/heads/main/all_extracted_configs.txt
