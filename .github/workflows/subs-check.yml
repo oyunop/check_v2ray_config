@@ -23,7 +23,7 @@ jobs:
       - name: 🐳 运行 Subs-Check (带强杀机制)
         run: |
           echo "🚀 启动容器化检测任务..."
-          timeout --signal=KILL --preserve-status 420 \
+          timeout --signal=KILL --preserve-status 600 \
             docker run --rm \
               --name subs-check-run \
               -v "${{ github.workspace }}/config":/app/config \
